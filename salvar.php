@@ -18,7 +18,7 @@ if ($produto === '' || $valor_unitario === '' || $quantidade <= 0 || $data_venda
     exit;
 }
 
-$valor_unitario = (flout) $valor_unitario;
+$valor_unitario = (float) $valor_unitario;
 if ($valor_unitario < 0) {
     header('Location: index.php?msg=Valor+unitário+não+pode+ser+negativo.');
     exit;
@@ -26,9 +26,9 @@ if ($valor_unitario < 0) {
 
 // INSERT com prepared statement
 $sql= "INSERT INTO vendas(produto, valor_unitario, quantidade, data_venda)
-        VALUES (?, ?, ?, ?)"
+        VALUES (?, ?, ?, ?)";
 
-$stmt= $conn ->prepare($sql);
+$stmt=$conn->prepare($sql);
 if (!$stmt) {
     header('Location: index.php?msg=Erro+ao+preparar+comando:+'.urlencode($conn ->error));
     exit;
